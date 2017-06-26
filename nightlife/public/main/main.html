@@ -1,0 +1,113 @@
+<link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+
+
+<nav class="navbar navbar-inverse navbar">
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" [routerLink]="['/']">NightLife App</a>
+       </div>
+       <div id="navbar" class="collapse navbar-collapse">
+         <ul class="nav navbar-nav navbar-left">
+           <li class="active"><a href="['/']" >Home</a></li>
+
+         </ul>
+
+
+       </div><!--/.nav-collapse -->
+     </div>
+   </nav>
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="modal modal-success alertBox" ng-show="userInfo">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Event Added Successfully <span class="glyphicon glyphicon-ok"></span></h4>
+              </div>
+              <div class="modal-body">
+                <p>You just added {{alertBox}} to your events</p>
+                <p><button class="btn btn-outline viewAll"> Click to view all events</button> <button class="btn btn-danger modalClose"> Close</button></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal modal-success events">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Your Events <span class="glyphicon glyphicon-cog"></span></h4>
+              </div>
+              <div class="modal-body">
+                    <p ng-if="myEvents.length === 0">No Events</p>
+                    <div class="repeats" ng-repeat="event in myEvents">
+                    <p>{{event.place}} <button ng-click="removeMe(event.eventId)" class="btn btn-outline"> Remove Me <span class="glyphicon glyphicon-remove"></span></button> </p>
+                    </div>
+                    <button class="btn btn-danger modalClose"> Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <form class="form-group form-search" ng-submit="submit(location)" novalidate>
+             <div class="header text-center">Wanna Go Somewhere?</div>
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                  <input ng-model="location" type="text" class="form-control" placeholder="Enter your location...." autofocus required>
+                  <span class="input-group-btn">
+                      <button class="btn btn-info btn-flat">Search</button>
+                  </span>
+              </div>
+            </form>
+            <button ng-click="login()" ng-hide="loggingIn" class="btn btn-lg btn-social btn-github center-block" data-toggle="tooltip" data-placement="right" title="This shows because you arent logged in">
+             <i class="fa fa-github "></i> Sign in with GitHub</button>
+            <div class="loader" ng-include="'main/poi.html'"></div>
+            <div class="results" style="margin-top:-150px;">
+                <div class="box box-success" style="border-radius:0px" ng-repeat="venue in events">
+                    <div class="well">
+                        <img ng-src='{{venue.categories[0].icon.prefix+"bg_88"+venue.categories[0].icon.suffix}}' width="90px"/>
+                        <b class="box-title">{{venue.name}}</b><br>
+
+                        <b class="box-title">Address: {{venue.location.address}}</b>
+                        <br>
+                        <b class="box-title">City: {{venue.location.city}}</b>
+                        <br>
+                        <b class="box-title">State: {{venue.location.state}}</b>
+                        <br>
+                        <b class="box-title">Formatted address: {{venue.location.formattedAddress}}</b><br>
+                        <b class="box-title" id="a"> {{venue.hereNow.count}} Going !!</b>
+                    </div>
+                    <div class="box-body">
+                        <div class="container-fluid">
+                            <div class="btn btn-flat btn-default btn-sm" ng-click="addMe($index)">Add Me <i class="fa fa-hand-spock-o"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>FreeCodeCamp |
+        <a href="https://freecodecamp.com/knrt10" target="_blank">@knrt10</a>
+  </div>
+</footer>
