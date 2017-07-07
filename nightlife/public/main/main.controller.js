@@ -29,10 +29,10 @@ angular.module('nightLife')
         url:'https://api.foursquare.com/v2/venues/search',
         method:'GET',
         params: {
-                client_id:'SILQ2D52N1ELWIMITWQHN350KN3VUTQMEPI4GKH0WQFJGAHC',
-                client_secret:'AX1IPI520FC1SHAOJMFRH15AOM0SEEHHVMSQGYH53GRUZTPD',
+                client_id:'client-id',
+                client_secret:'client-secret',
                 near:location,
-                v:20130815,
+                v:date-of-version,
                 query:'Bar'
             }
     }).success(function(data) {
